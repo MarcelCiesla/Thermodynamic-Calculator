@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
 public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
 
     JLabel lT1, lP1, lFi, lNw, lP2, lP4, lT3, lWd, lNms, lNmt, lNit, lNis, lDaneWejsciowe, lDaneWyjsciowe, lN, lM, lV, lP, lNe, lT2, lT4, lQd;
@@ -348,8 +349,6 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
         add(bprzykladowe);
         bprzykladowe.addActionListener(this);
 
-
-
     }
 
     @Override
@@ -461,10 +460,7 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
             tNit.setText("0.95");
             tNis.setText("0.8");
         }
-
-
-
-
+        
 
     }
 

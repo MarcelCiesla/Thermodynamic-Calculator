@@ -4,10 +4,10 @@ public class AnalizaTurbinyGazowej extends JFrame {
 
     public AnalizaTurbinyGazowej() {
 
-        JLabel lT1, lP1, lFi, lNw, lP2, lP4, lT3, lWd, lNms, lNmt, lNit, lNis, lNk, lDaneWejsciowe;
-        JTextField tT1, tP1, tFi, tNw, tP2, tP4, tT3, tWd, tNms, tNmt, tNit, tNis, tNk;
-        JLabel kT1, kP1, kNw, kP2, kP4, kT3, kWd;
-        JLabel nT1, nP1, nFi, nNw, nP2, nP4, nT3, nWd, nNms, nNmt, nNit, nNis, nNk;
+        JLabel lT1, lP1, lFi, lNw, lP2, lP4, lT3, lWd, lNms, lNmt, lNit, lNis, lNk, lDaneWejsciowe, lDaneWyjsciowe, lN, lM, lV, lP, lNe, lT2, lT4, lQd;
+        JTextField tT1, tP1, tFi, tNw, tP2, tP4, tT3, tWd, tNms, tNmt, tNit, tNis, tNk, tN, tM, tV, tP, tNe, tT2, tT4, tQd;
+        JLabel kT1, kP1, kNw, kP2, kP4, kT3, kWd, kN, kM, kV, kP, kT2, kT4, kQd;
+        JLabel nT1, nP1, nFi, nNw, nP2, nP4, nT3, nWd, nNms, nNmt, nNit, nNis, nNk, nN, nM, nV, nP, nNe, nT2, nT4, nQd;
 
         setSize(1000,500);
         setTitle("Analiza turbiny gazowej");
@@ -201,6 +201,141 @@ public class AnalizaTurbinyGazowej extends JFrame {
         nNk = new JLabel("nk ");
         nNk.setBounds(235,260,30,20);
         add(nNk);
+
+        lDaneWyjsciowe = new JLabel("Dane wyjściowe: ");
+        lDaneWyjsciowe.setBounds(730,10,150,20);
+        add(lDaneWyjsciowe);
+
+        lN = new JLabel("Strumień molowy powietrza: ");
+        lN.setBounds(740,40,200,20);
+        add(lN);
+
+        tN = new JTextField("");
+        tN.setBounds(770,60,80,20);
+        add(tN);
+
+        kN = new JLabel("kmol/s");
+        kN.setBounds(860,60,80,20);
+        add(kN);
+
+        nN = new JLabel("n ");
+        nN.setBounds(750,60,20,20);
+        add(nN);
+
+
+        lM = new JLabel("Strumień masowy powietrza: ");
+        lM.setBounds(740,90,200,20);
+        add(lM);
+
+        tM = new JTextField("");
+        tM.setBounds(770,110,80,20);
+        add(tM);
+
+        kM = new JLabel("kg/s");
+        kM.setBounds(860,110,80,20);
+        add(kM);
+
+        nM = new JLabel("m ");
+        nM.setBounds(750,110,20,20);
+        add(nM);
+
+        lV = new JLabel("Strumień objętościowy powietrza: ");
+        lV.setBounds(740,140,220,20);
+        add(lV);
+
+        tV = new JTextField("");
+        tV.setBounds(770,160,80,20);
+        add(tV);
+
+        kV = new JLabel("m3");
+        kV.setBounds(860,160,80,20);
+        add(kV);
+
+        nV = new JLabel("V ");
+        nV.setBounds(750,160,20,20);
+        add(nV);
+
+        lP = new JLabel("Strumień paliwa: ");
+        lP.setBounds(740,190,150,20);
+        add(lP);
+
+        tP = new JTextField("");
+        tP.setBounds(770,210,80,20);
+        add(tP);
+
+        kP = new JLabel("m3/s");
+        kP.setBounds(860,210,80,20);
+        add(kP);
+
+        nP = new JLabel("p ");
+        nP.setBounds(750,210,30,20);
+        add(nP);
+
+        lNe = new JLabel("Sprawność układu: ");
+        lNe.setBounds(740,240,150,20);
+        add(lNe);
+
+        tNe = new JTextField("");
+        tNe.setBounds(770,260,80,20);
+        add(tNe);
+
+        nNe = new JLabel("ne ");
+        nNe.setBounds(750,260,30,20);
+        add(nNe);
+
+        lT2 = new JLabel("Temperatura: ");
+        lT2.setBounds(740,290,150,20);
+        add(lT2);
+
+        tT2 = new JTextField("");
+        tT2.setBounds(770,310,80,20);
+        add(tT2);
+
+        kT2 = new JLabel("K");
+        kT2.setBounds(860,310,80,20);
+        add(kT2);
+
+        nT2 = new JLabel("T2 ");
+        nT2.setBounds(750,310,30,20);
+        add(nT2);
+
+        lT4 = new JLabel("Temperatura: ");
+        lT4.setBounds(740,340,150,20);
+        add(lT4);
+
+        tT4 = new JTextField("");
+        tT4.setBounds(770,360,80,20);
+        add(tT4);
+
+        kT4 = new JLabel("K");
+        kT4.setBounds(860,360,80,20);
+        add(kT4);
+
+        nT4 = new JLabel("T4 ");
+        nT4.setBounds(750,360,30,20);
+        add(nT4);
+
+        lQd = new JLabel("Ciepło dostarczone: ");
+        lQd.setBounds(740,390,150,20);
+        add(lQd);
+
+        tQd = new JTextField("");
+        tQd.setBounds(770,410,80,20);
+        add(tQd);
+
+        kQd = new JLabel("K");
+        kQd.setBounds(860,410,80,20);
+        add(kQd);
+
+        nQd = new JLabel("Qd ");
+        nQd.setBounds(750,410,30,20);
+        add(nQd);
+
+
+
+
+
+
 
 
 

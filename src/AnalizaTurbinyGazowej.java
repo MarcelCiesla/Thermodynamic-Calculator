@@ -9,23 +9,20 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
     JTextField tT1, tP1, tFi, tNw, tP2, tP4, tT3, tWd, tNms, tNmt, tNit, tNis, tN, tM, tV, tP, tNe, tT2, tT4, tQd;
     JLabel kT1, kP1, kNw, kP2, kP4, kT3, kWd, kN, kM, kV, kP, kT2, kT4, kQd;
     JLabel nT1, nP1, nFi, nNw, nP2, nP4, nT3, nWd, nNms, nNmt, nNit, nNis, nN, nM, nV, nP, nNe, nT2, nT4, nQd;
-    JButton bOblicz;
-    double p1, p2, p3, t1, t3, fi, nms, nmt, nit, nis, nw, mwd, t2, t4, mp, mg, x, xz, z, mieszanina, p4, t2s, t4s, mcpz, n, m, qd, vn, p, wd, ne, mcv;
+    JButton bOblicz, bWyczysc, bprzykladowe;
+    double p1, p2, p3, t1, t3, fi, nms, nmt, nit, nis, nw, t2, t4, mp, mg, x, xz, z, mieszanina, p4, t2s, t4s, mcpz, n, m, qd, vn, p, wd, ne, mcv;
     double norm = 22.42; //objętniość mola gazu doskonałego w warunkach normalnych ( T=273,15K, p=101325 Pa)
     double ps = 0.00316712; //ciśnienie nasycenia [Pa]
-    double zlo2 = 0.21; // udział tlenu w powietrzu
-    double zln2 = 0.79; // udział azotu w powietrzu
     double mcp2 = 29.1; // Właćciwa molowa pojemność cieplna dla gazów 2-atomowych
     double mcp3 = 33.3; // właściwa molowa pojemnośc ciepla dla gazów 3-atomowych
     double mi = 28.5478;
     double mr = 8.3147;
-    int todn = 273; //przelicznik temperatury
 
 
 
     public AnalizaTurbinyGazowej() {
 
-        setSize(1000, 600);
+        setSize(1000, 650);
         setTitle("Analiza turbiny gazowej");
         setLayout(null);
 
@@ -328,7 +325,7 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
         tQd.setBounds(770, 410, 80, 20);
         add(tQd);
 
-        kQd = new JLabel("K");
+        kQd = new JLabel("MW");
         kQd.setBounds(860, 410, 80, 20);
         add(kQd);
 
@@ -341,6 +338,15 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
         add(bOblicz);
         bOblicz.addActionListener(this);
 
+        bWyczysc = new JButton("Wyczyść");
+        bWyczysc.setBounds(700, 510, 100, 50);
+        add(bWyczysc);
+        bWyczysc.addActionListener(this);
+
+        bprzykladowe = new JButton("Przykładowe");
+        bprzykladowe.setBounds(820, 510, 110, 50);
+        add(bprzykladowe);
+        bprzykladowe.addActionListener(this);
 
 
 
@@ -348,42 +354,114 @@ public class AnalizaTurbinyGazowej extends JFrame  implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        t1 = Double.parseDouble(tT1.getText());
-        p1 = Double.parseDouble(tP1.getText());
-        fi = Double.parseDouble(tFi.getText());
-        nw = Double.parseDouble(tNw.getText());
-        p2 = Double.parseDouble(tP2.getText());
-        p3 = Double.parseDouble(tP2.getText());
-        p4 = Double.parseDouble(tP4.getText());
-        t3 = Double.parseDouble(tT3.getText());
-        wd = Double.parseDouble(tWd.getText());
-        nms = Double.parseDouble(tNms.getText());
-        nmt = Double.parseDouble(tNmt.getText());
-        nit = Double.parseDouble(tNit.getText());
-        nis = Double.parseDouble(tNis.getText());
+        Object zrodlo = e.getSource();
+        if (zrodlo==bOblicz) {
+
+            t1 = Double.parseDouble(tT1.getText());
+            p1 = Double.parseDouble(tP1.getText());
+            fi = Double.parseDouble(tFi.getText());
+            nw = Double.parseDouble(tNw.getText());
+            p2 = Double.parseDouble(tP2.getText());
+            p3 = Double.parseDouble(tP2.getText());
+            p4 = Double.parseDouble(tP4.getText());
+            t3 = Double.parseDouble(tT3.getText());
+            wd = Double.parseDouble(tWd.getText());
+            nms = Double.parseDouble(tNms.getText());
+            nmt = Double.parseDouble(tNmt.getText());
+            nit = Double.parseDouble(tNit.getText());
+            nis = Double.parseDouble(tNis.getText());
 
 
-        //funkcja liczaca stopien zwilzenia
-        mp = 18;
-        mg = 28.84;
-        x = (mp/mg) * ((fi*ps)/(p1-(fi*ps)));
-        xz = x*(1/(mp/mg));
-        mieszanina = 1-z;
+            //funkcja liczaca stopien zwilzenia
+            mp = 18;
+            mg = 28.84;
+            x = (mp / mg) * ((fi * ps) / (p1 - (fi * ps)));
+            xz = x * (1 / (mp / mg));
+            mieszanina = 1 - z;
 
-        //funkcja obliczajaca udzialy molowe pierwiastkow
-        mcpz = (z*mcp3) + (mieszanina*mcp2);
+            //funkcja obliczajaca udzialy molowe pierwiastkow
+            mcpz = (z * mcp3) + (mieszanina * mcp2);
 
-        //kappa
-        mcv = mcpz - mr;
-        double kappa = mcpz / mcv;
+            //kappa
+            mcv = mcpz - mr;
+            double kappa = mcpz / mcv;
 
-        //funkcja licząca t2s
-        double potega = (double)Math.pow((p2/p1), ((kappa-1)/kappa));
-        t2s=potega*t1;
+            //funkcja licząca t2s
+            double potega = Math.pow((p2 / p1), ((kappa - 1) / kappa));
+            t2s = potega * t1;
 
-        //fukcja liczaca t2
-        t2=t1+((t2s-t1)/nis);
-        tT2.setText(String.format("%.2f", t2));
+            //funkcja liczaca t2
+            t2 = t1 + ((t2s - t1) / nis);
+            tT2.setText(String.format("%.2f", t2));
+
+            //funkcja licząca t4s
+            double potega2 = Math.pow((p4 / p3), ((kappa - 1) / kappa));
+            t4s = potega2 * t3;
+
+            //funkcja licząca t4
+            t4 = -(nit * (t3 - t4s) - t3);
+            tT4.setText(String.format("%.2f", t4));
+
+            //strumień molowy
+            n = nw / (nmt * mcpz * (t3 - t4 - t2 + t1));
+            tN.setText(String.format("%.4f", n));
+
+            //strumień masowy
+            m = n * mi;
+            tM.setText(String.format("%.3f", m));
+
+            //strumień objętościowy
+            vn = n * norm;
+            tV.setText(String.format("%.3f", vn));
+
+            //funkcja na ciepło
+            qd = (n * mcpz * (t3 - t2)) / 0.9;
+            tQd.setText(String.format("%.3f", qd));
+
+            //strumień paliwa
+            p = qd / wd;
+            tP.setText(String.format("%.3f", p));
+
+            //sprawność układu
+            ne = nw / qd;
+            tNe.setText(String.format("%.3f", ne));
+
+        } else if (zrodlo==bWyczysc) {
+            tT1.setText("");
+            tFi.setText("");
+            tP1.setText("");
+            tNw.setText("");
+            tP2.setText("");
+            tP4.setText("");
+            tT3.setText("");
+            tWd.setText("");
+            tNms.setText("");
+            tNmt.setText("");
+            tNit.setText("");
+            tNis.setText("");
+            tN.setText("");
+            tM.setText("");
+            tV.setText("");
+            tP.setText("");
+            tNe.setText("");
+            tT2.setText("");
+            tT4.setText("");
+            tQd.setText("");
+        } else if (zrodlo==bprzykladowe) {
+            tT1.setText("298");
+            tP1.setText("0.1");
+            tFi.setText("0.7");
+            tNw.setText("40");
+            tP2.setText("1");
+            tP4.setText("0.2");
+            tT3.setText("1300");
+            tWd.setText("40");
+            tNms.setText("0.99");
+            tNmt.setText("0.98");
+            tNit.setText("0.95");
+            tNis.setText("0.8");
+        }
+
 
 
 
